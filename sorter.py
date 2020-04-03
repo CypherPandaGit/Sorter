@@ -10,3 +10,5 @@ if os.path.exists(path) == True:
 
 else:
     print(False)
+
+print('Testing github verification')
