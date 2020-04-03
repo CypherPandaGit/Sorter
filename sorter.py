@@ -1,14 +1,12 @@
 import os
+from pathlib import Path
 
 
-path = '\\Downloads\\'
+extentions = {
+    'HTML': ['.html', '.htm'],
+    'EXE': ['.exe', '.zip', '.rar'],
+    'DOCUMENTS': ['.docx', '.doc', '.pdf', '.xls', '.odt'],
+    'IMAGES': ['.jpg', '.jpeg', '.gif', '.bmp', '.png', '.psd', '.heif'],
+    'VIDEOS': ['.mp4', '.avi', '.flv', '.mov', '.mpeg'],
+    'AUDIO': ['mp3']}
 
-print('Is path OK?')
-
-if os.path.exists(path) == True:
-    print(True)
-
-else:
-    print(False)
-
-print('Testing github verification')
