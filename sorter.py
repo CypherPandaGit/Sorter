@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 
@@ -30,29 +31,48 @@ file_formats = {file_extension: directory
 def organize_files():
 # Main sorting function. It will check if directory exists. If yes; continune.
 # If not; new directory will be created
-    for entry in os.scandir():
-        if entry.is_dir():
-            continue
 
-        file_path = Path(entry)
-        file_extension = file_path.suffix.lower()
 
-        if file_extension in file_formats:
-            directory_path = Path(file_formats[file_extension])
-            directory_path.mkdir(exist_ok=True)
-            file_path.rename(directory_path.joinpath(file_path))
+    print('Do you want to organize your files automatically?\nYes  or  No')
+    answer = input()
 
-        for dir in os.scandir():
-            try:
-                os.rmdir(dir)
-            except:
-                pass
+    if answer.lower() == 'yes' or answer.lower() == 'y':
 
-    print('---------------')
-    print('-----DONE!-----')
-    print('---------------')
-    print('THAT WAS SIMPLE')
-    print('---------------')
+        for entry in os.scandir():
+            if entry.is_dir():
+                continue
+
+            file_path = Path(entry)
+            file_extension = file_path.suffix.lower()
+
+            if file_extension in file_formats:
+                directory_path = Path(file_formats[file_extension])
+                directory_path.mkdir(exist_ok=True)
+                file_path.rename(directory_path.joinpath(file_path))
+
+            for dir in os.scandir():
+                try:
+                    os.rmdir(dir)
+                except:
+                    pass
+
+        print('---------------')
+        print('-----DONE!-----')
+        print('---------------')
+        print('THAT WAS SIMPLE')
+        print('---------------')
+
+    elif answer.lower() == 'no' or answer.lower() == 'n':
+        print('----------------')
+        print('You answered No.')
+        print('----------------')
+        sys.exit()
+
+    else:
+        print('--------------------')
+        print('Something went wrong')
+        print('--------------------')
+
 
 if __name__ == '__main__':
     organize_files()
